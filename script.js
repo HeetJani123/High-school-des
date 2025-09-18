@@ -104,14 +104,18 @@ class WildWestPosterGenerator {
         const location = document.getElementById('location').value;
         const reward = document.getElementById('reward').value;
         const crime = document.getElementById('crime').value;
+        const photoStyle = document.getElementById('photoStyle').value;
 
         if (!this.uploadedImage) {
             alert('Please upload an image first!');
             return;
         }
 
+        
+        new Audio('Cowboy Standoff Music Sound Effect.mp3').play().catch(e => console.log('Audio failed:', e));
+
         this.createCanvas();
-        this.drawWildWestTemplate(name, location, reward, crime);
+        this.drawWildWestTemplate(name, location, reward, crime, photoStyle);
         this.showPosterPreview();
     }
 
@@ -128,7 +132,7 @@ class WildWestPosterGenerator {
         this.ctx = this.canvas.getContext('2d');
     }
 
-    drawWildWestTemplate(name, location, reward, crime) {
+    drawWildWestTemplate(name, location, reward, crime, photoStyle) {
         const ctx = this.ctx;
         const canvas = this.canvas;
 
@@ -148,7 +152,7 @@ class WildWestPosterGenerator {
         this.drawCrossedRevolvers(ctx, canvas);
 
         // Draw image with Wild West frame
-        this.drawWildWestImage(ctx, canvas);
+        this.drawWildWestImage(ctx, canvas, photoStyle);
 
         // Draw name and details with Wild West styling
         this.drawWildWestDetails(ctx, canvas, name, location, crime);
@@ -268,7 +272,7 @@ class WildWestPosterGenerator {
         ctx.fill();
     }
 
-    drawWildWestImage(ctx, canvas) {
+    drawWildWestImage(ctx, canvas, photoStyle = 'normal') {
         const imageSize = 200;
         const x = (canvas.width - imageSize) / 2;
         const y = 180;
@@ -280,9 +284,25 @@ class WildWestPosterGenerator {
         ctx.fillStyle = '#8B4513';
         ctx.fillRect(x - 8, y - 8, imageSize + 16, imageSize + 16);
 
-        // Draw image with sepia filter
+        // Draw image with different style filters
         if (this.uploadedImage) {
-            ctx.filter = 'sepia(100%) contrast(1.2) brightness(0.9)';
+            // Apply different photo styles based on selection
+            switch(photoStyle) {
+                case 'vintage':
+                    ctx.filter = 'sepia(100%) contrast(1.2) brightness(0.9)';
+                    break;
+                case 'blackwhite':
+                    ctx.filter = 'grayscale(100%) contrast(1.3) brightness(0.95)';
+                    break;
+                case 'faded':
+                    ctx.filter = 'sepia(60%) contrast(0.8) brightness(1.1) opacity(0.8)';
+                    break;
+                case 'normal':
+                default:
+                    ctx.filter = 'none';
+                    break;
+            }
+            
             ctx.drawImage(this.uploadedImage, x, y, imageSize, imageSize);
             ctx.filter = 'none';
         }

@@ -93,6 +93,31 @@ header p {
     box-shadow: 0 0 8px rgba(139, 0, 0, 0.3);
 }
 
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #8B4513;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Fredericka the Great', cursive;
+    background: #FFFFFF;
+    color: #2F1B14;
+    cursor: pointer;
+}
+
+.form-group select:focus {
+    outline: none;
+    border-color: #8B0000;
+    box-shadow: 0 0 8px rgba(139, 0, 0, 0.3);
+}
+
+.style-dropdown option {
+    font-family: 'Fredericka the Great', cursive;
+    background: #FFFFFF;
+    color: #2F1B14;
+    padding: 8px;
+}
+
 .file-upload-container {
     margin-top: 10px;
 }
