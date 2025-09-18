@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wild West Poster Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Fredericka+the+Great&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Wild West Poster Generator 🤠</h1>
+            <p>Create your own wanted poster!</p>
+        </header>
+
+        <div class="generator-section">
+            <div class="form-container">
+                <h2>Create Your Poster</h2>
+                
+                <form id="posterForm">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" placeholder="e.g., Billy the Kid" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location:</label>
+                        <input type="text" id="location" placeholder="e.g., Deadwood, Dakota Territory" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reward">Reward Amount:</label>
+                        <input type="text" id="reward" placeholder="e.g., $500" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="crime">Crime Type:</label>
+                        <input type="text" id="crime" placeholder="e.g., Armed Robbery, Horse Theft and Assault on a Peace Officer" required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="imageUpload">Upload Photo:</label>
+                        <div class="file-upload-container">
+                            <div class="file-upload-area" id="fileUploadArea">
+                                <div class="file-upload-content">
+                                    <div class="file-upload-icon">📷</div>
+                                    <div class="file-upload-text">
+                                        <strong>Drop your photo here</strong>
+                                        <span>or click to browse</span>
+                                    </div>
+                                </div>
+                                <input type="file" id="imageUpload" accept="image/*" required>
+                            </div>
+                            <div class="image-preview" id="imagePreview"></div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="generate-btn">Generate Poster</button>
+                </form>
+            </div>
+
+            <div class="preview-container">
+                <h2>Preview</h2>
+                <div class="poster-preview" id="posterPreview">
+                    <div class="placeholder-text">
+                        <p>Your poster will appear here</p>
+                    </div>
+                </div>
+                <button id="downloadBtn" class="download-btn" style="display: none;">Download Poster</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

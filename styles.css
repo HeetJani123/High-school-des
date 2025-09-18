@@ -1,0 +1,243 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Fredericka the Great', cursive;
+    background: #8B4513;
+    min-height: 100vh;
+    color: #2F1B14;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    background: #F5DEB3;
+    padding: 25px;
+    border-radius: 15px;
+    border: 4px solid #8B4513;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+    font-family: 'Creepster', cursive;
+    font-size: 2.5rem;
+    color: #8B0000;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2rem;
+    color: #2F1B14;
+}
+
+.generator-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.form-container, .preview-container {
+    background: #F5DEB3;
+    padding: 30px;
+    border-radius: 15px;
+    border: 4px solid #8B4513;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.form-container h2, .preview-container h2 {
+    font-family: 'Creepster', cursive;
+    font-size: 1.8rem;
+    color: #8B0000;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #8B0000;
+    font-size: 1.1rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #8B4513;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Fredericka the Great', cursive;
+    background: #FFFFFF;
+    color: #2F1B14;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #8B0000;
+    box-shadow: 0 0 8px rgba(139, 0, 0, 0.3);
+}
+
+.file-upload-container {
+    margin-top: 10px;
+}
+
+.file-upload-area {
+    position: relative;
+    border: 3px dashed #8B4513;
+    border-radius: 10px;
+    padding: 40px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #F4E4BC 0%, #DEB887 100%);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(139, 69, 19, 0.1);
+}
+
+.file-upload-area:hover {
+    border-color: #8B0000;
+    background: linear-gradient(135deg, #F5DEB3 0%, #D2B48C 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(139, 69, 19, 0.2);
+}
+
+.file-upload-area.dragover {
+    border-color: #8B0000;
+    background: linear-gradient(135deg, #FFE4B5 0%, #DEB887 100%);
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(139, 69, 19, 0.3);
+}
+
+.file-upload-content {
+    pointer-events: none;
+}
+
+.file-upload-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+    color: #8B4513;
+}
+
+.file-upload-text {
+    color: #2F1B14;
+}
+
+.file-upload-text strong {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #8B0000;
+}
+
+.file-upload-text span {
+    font-size: 14px;
+    color: #8B4513;
+}
+
+.file-upload-area input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.image-preview {
+    margin-top: 15px;
+    text-align: center;
+    padding: 15px;
+    background: linear-gradient(135deg, #F4E4BC 0%, #DEB887 100%);
+    border-radius: 10px;
+    border: 2px solid #8B4513;
+    box-shadow: 0 2px 4px rgba(139, 69, 19, 0.1);
+}
+
+.image-preview img {
+    max-width: 200px;
+    max-height: 200px;
+    border: 3px solid #8B0000;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.generate-btn, .download-btn {
+    width: 100%;
+    padding: 15px;
+    background: #8B0000;
+    color: #F5DEB3;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-family: 'Creepster', cursive;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.generate-btn:hover, .download-btn:hover {
+    background: #A52A2A;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.poster-preview {
+    background: #F5DEB3;
+    border: 6px solid #8B4513;
+    border-radius: 15px;
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.placeholder-text {
+    text-align: center;
+    color: #8B0000;
+    font-size: 1.1rem;
+}
+
+.placeholder-text p {
+    margin-bottom: 10px;
+}
+
+/* Canvas styling */
+#posterCanvas {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .generator-section {
+        grid-template-columns: 1fr;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .form-container, .preview-container {
+        padding: 15px;
+    }
+}
