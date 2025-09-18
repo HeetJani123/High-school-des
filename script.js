@@ -157,7 +157,7 @@ class WildWestPosterGenerator {
         this.drawWildWestReward(ctx, canvas, reward);
 
         // Draw sheriff badge
-        this.drawSheriffBadge(ctx, canvas, crime);
+        this.drawSheriffBadge(ctx, canvas, reward);
 
         // Add Wild West decorative elements
         this.drawWildWestDecorations(ctx, canvas);
@@ -314,16 +314,16 @@ class WildWestPosterGenerator {
         ctx.fillText(`REWARD: ${reward}`, canvas.width / 2, 620);
     }
 
-    drawSheriffBadge(ctx, canvas, crime) {
-        // Determine number of gold coins based on crime severity
-        const coinCount = this.getCrimeSeverity(crime);
+    drawSheriffBadge(ctx, canvas, reward) {
+        // Determine number of gold coins based on reward amount
+        const coinCount = this.getRewardLevel(reward);
         const y = 680;
         
-        // Draw multiple gold coins based on severity
+        // Draw multiple gold coins based on reward amount
         for (let i = 0; i < coinCount; i++) {
             const x = canvas.width / 2 + (i - (coinCount - 1) / 2) * 60;
             
-            // Add glow effect for higher severity crimes
+            // Add glow effect for higher reward amounts
             if (coinCount >= 4) {
                 ctx.shadowColor = '#FFD700';
                 ctx.shadowBlur = 8;
@@ -343,7 +343,7 @@ class WildWestPosterGenerator {
             ctx.shadowOffsetX = 0;
             ctx.shadowOffsetY = 0;
             
-            // Coin border (thicker for higher severity)
+            // Coin border (thicker for higher rewards)
             ctx.strokeStyle = '#2F1B14';
             ctx.lineWidth = coinCount >= 4 ? 4 : 3;
             ctx.stroke();
@@ -367,40 +367,32 @@ class WildWestPosterGenerator {
 
     getSeverityText(coinCount) {
         switch(coinCount) {
-            case 5: return 'EXTREMELY DANGEROUS';
-            case 4: return 'VERY DANGEROUS';
-            case 3: return 'DANGEROUS';
-            case 2: return 'MODERATE THREAT';
+            case 5: return 'HIGHEST BOUNTY';
+            case 4: return 'VERY HIGH BOUNTY';
+            case 3: return 'HIGH BOUNTY';
+            case 2: return 'MODERATE BOUNTY';
             case 1: return 'WANTED';
             default: return 'WANTED';
         }
     }
 
-    getCrimeSeverity(crime) {
-        const crimeText = crime.toLowerCase();
+    getRewardLevel(reward) {
+        // Extract numeric value from reward string
+        const rewardText = reward.toString().replace(/[^0-9]/g, '');
+        const rewardAmount = parseInt(rewardText) || 0;
         
-        // Most severe crimes (5 coins)
-        if (crimeText.includes('murder') || crimeText.includes('killing') || crimeText.includes('assassination')) {
-            return 5;
+        // Determine number of coins based on reward amount
+        if (rewardAmount >= 10000) {
+            return 5; // $10,000+ = 5 coins
+        } else if (rewardAmount >= 5000) {
+            return 4; // $5,000+ = 4 coins
+        } else if (rewardAmount >= 2000) {
+            return 3; // $2,000+ = 3 coins
+        } else if (rewardAmount >= 1000) {
+            return 2; // $1,000+ = 2 coins
+        } else {
+            return 1; // Under $1,000 = 1 coin
         }
-        
-        // Very severe crimes (4 coins)
-        if (crimeText.includes('bank robbery') || crimeText.includes('train robbery') || crimeText.includes('stagecoach robbery')) {
-            return 4;
-        }
-        
-        // Severe crimes (3 coins)
-        if (crimeText.includes('armed robbery') || crimeText.includes('assault on a peace officer') || crimeText.includes('arson')) {
-            return 3;
-        }
-        
-        // Moderate crimes (2 coins)
-        if (crimeText.includes('horse theft') || crimeText.includes('cattle rustling') || crimeText.includes('theft')) {
-            return 2;
-        }
-        
-        // Minor crimes (1 coin)
-        return 1;
     }
 
     drawWildWestDecorations(ctx, canvas) {
